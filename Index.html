@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 1px dashed grey;
+}
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+button{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 30px;
+  
+  border-radius: 50px;
+  background: linear-gradient(145deg, #f0f0f0,#cacaca);
+  box-shadow: 20px 20px 60px #bebebe,
+  -20px -20px 60px #ffffff;
+  
+}
+button:active{
+  border-radius: 50px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
+h1{
+  font-size: 60px;
+  font-weight: 900;
+  color: lime;
+}
+#moniter{
+  width: 383px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#moniter > div > span{
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 4px;
+  color: white;
+}
+#box{
+  padding: 5px;
+}
+#box > button{
+  margin: 5px;
+}
+#moniter > div > b{
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 4px;
+  
+}
+  </style>
+</head>
+<body>
+<h1 id="result">big</h1>
+
+<div id="moniter">
+  <div>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+  <div>
+    <b>1</b>
+    <b>2</b>
+    <b>3</b>
+    <b>4</b>
+    <b>7</b>
+    <b>7</b>
+    <b>9</b>
+    <b>3</b>
+    <b>2</b>
+    <b>0</b>
+  </div>
+</div>
+
+<div id="box">
+  <button>0</button>
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button><br />
+  <button>5</button>
+  <button>6</button>
+  <button>7</button>
+  <button>8</button>
+  <button>9</button>
+</div>
+
+
+<script>
+  var arr = [];
+let buttons = document.getElementsByTagName("button")
+let spans = document.getElementsByTagName("span")
+let bs = document.getElementsByTagName('b')
+
+for(var i=0;i<buttons.length;i++){
+buttons[i].addEventListener('click',(e)=>{
+  console.log(e.target.innerText)
+  if(arr.length < 10){
+    arr.push(e.target.innerText)
+  }
+  else{
+    arr.shift()
+    arr.push(e.target.innerText)
+  }
+})
+}
+
+function engine(){
+  spans[0].innerText = parseInt(arr[9]) > 4 ? "B" : "S"
+  spans[1].innerText = parseInt(arr[8]) > 4 ? "B" : "S"
+  spans[2].innerText = parseInt(arr[7]) > 4 ? "B" : "S"
+  spans[3].innerText = parseInt(arr[6]) > 4 ? "B" : "S"
+  spans[4].innerText = parseInt(arr[5]) > 4 ? "B" : "S"
+  spans[5].innerText = parseInt(arr[4]) > 4 ? "B" : "S"
+  spans[6].innerText = parseInt(arr[3]) > 4 ? "B" : "S"
+  spans[7].innerText = parseInt(arr[2]) > 4 ? "B" : "S"
+  spans[8].innerText = parseInt(arr[1]) > 4 ? "B" : "S"
+  spans[9].innerText = parseInt(arr[0]) > 4 ? "B" : "S"
+  
+  for(var i = spans.length-1;i>=0;i--){
+    if(spans[i].innerText == "S"){
+        spans[i].style.backgroundColor = "#839aeb"
+    }
+    if(spans[i].innerText == "B"){
+      spans[i].style.backgroundColor = "#e8bd5f"
+    }
+  }
+  bs[0].innerText = arr[9]
+  bs[1].innerText = arr[8]
+  bs[2].innerText = arr[7]
+  bs[3].innerText = arr[6]
+  bs[4].innerText = arr[5]
+  bs[5].innerText = arr[4]
+  bs[6].innerText = arr[3]
+  bs[7].innerText = arr[2]
+  bs[8].innerText = arr[1]
+  bs[9].innerText = arr[0]
+  
+  result.innerText = prediction()
+  
+  requestAnimationFrame(engine)
+}
+engine()
+
+function prediction(){
+  if(parseInt(arr[9]) < parseInt(arr[8])){
+    return "BIG"
+  }
+  if(parseInt(arr[9]) > parseInt(arr[8])){
+    return "SMALL"
+  }
+  if(parseInt(arr[9]) == parseInt(arr[8])){
+    if(parseInt(arr[9]) > 4){
+      return "BIG"
+    }
+    if(parseInt(arr[9]) < 5){
+      return "SMALL"
+    }
+  }
+}
+</script>
+</body>
+</html>
