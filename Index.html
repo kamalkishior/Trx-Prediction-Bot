@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     *{
   margin: 0;
@@ -9,18 +11,18 @@
   outline: 1px dashed grey;
 }
 body{
-  height: 100%;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  
 }
 button{
   height: 60px;
   width: 60px;
   border-radius: 50%;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 2em;
   
   border-radius: 50px;
   background: linear-gradient(145deg, #f0f0f0,#cacaca);
@@ -34,8 +36,18 @@ button:active{
   box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
+
+i{
+  font-weight: 900;
+  font-size: 3em;
+  color: red;
+}
+u{
+  font-variant: small-caps;
+}
+
 h1{
-  font-size: 60px;
+  font-size: 4em;
   font-weight: 900;
   color: lime;
 }
@@ -50,7 +62,7 @@ h1{
 #moniter > div > span{
   width: 30px;
   height: 30px;
-  font-size: 20px;
+  font-size: 1.5em;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -59,6 +71,7 @@ h1{
 }
 #box{
   padding: 5px;
+  
 }
 #box > button{
   margin: 5px;
@@ -66,7 +79,7 @@ h1{
 #moniter > div > b{
   width: 30px;
   height: 30px;
-  font-size: 20px;
+  font-size: 1.5em;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -74,11 +87,18 @@ h1{
   
 }
   </style>
+  <title>Predictor Bot</title>
 </head>
 <body>
+  
 <h1 id="result">big</h1>
 
 <div id="moniter">
+  <aside>
+  <u>Failed Levels - <i id="failed"></i></u>
+  
+  </aside>
+  
   <div>
   <span></span>
   <span></span>
@@ -92,17 +112,18 @@ h1{
   <span></span>
   </div>
   <div>
-    <b>1</b>
-    <b>2</b>
-    <b>3</b>
-    <b>4</b>
-    <b>7</b>
-    <b>7</b>
-    <b>9</b>
-    <b>3</b>
-    <b>2</b>
-    <b>0</b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
   </div>
+  
 </div>
 
 <div id="box">
@@ -120,77 +141,7 @@ h1{
 
 
 <script>
-  var arr = [];
-let buttons = document.getElementsByTagName("button")
-let spans = document.getElementsByTagName("span")
-let bs = document.getElementsByTagName('b')
-
-for(var i=0;i<buttons.length;i++){
-buttons[i].addEventListener('click',(e)=>{
-  console.log(e.target.innerText)
-  if(arr.length < 10){
-    arr.push(e.target.innerText)
-  }
-  else{
-    arr.shift()
-    arr.push(e.target.innerText)
-  }
-})
-}
-
-function engine(){
-  spans[0].innerText = parseInt(arr[9]) > 4 ? "B" : "S"
-  spans[1].innerText = parseInt(arr[8]) > 4 ? "B" : "S"
-  spans[2].innerText = parseInt(arr[7]) > 4 ? "B" : "S"
-  spans[3].innerText = parseInt(arr[6]) > 4 ? "B" : "S"
-  spans[4].innerText = parseInt(arr[5]) > 4 ? "B" : "S"
-  spans[5].innerText = parseInt(arr[4]) > 4 ? "B" : "S"
-  spans[6].innerText = parseInt(arr[3]) > 4 ? "B" : "S"
-  spans[7].innerText = parseInt(arr[2]) > 4 ? "B" : "S"
-  spans[8].innerText = parseInt(arr[1]) > 4 ? "B" : "S"
-  spans[9].innerText = parseInt(arr[0]) > 4 ? "B" : "S"
-  
-  for(var i = spans.length-1;i>=0;i--){
-    if(spans[i].innerText == "S"){
-        spans[i].style.backgroundColor = "#839aeb"
-    }
-    if(spans[i].innerText == "B"){
-      spans[i].style.backgroundColor = "#e8bd5f"
-    }
-  }
-  bs[0].innerText = arr[9]
-  bs[1].innerText = arr[8]
-  bs[2].innerText = arr[7]
-  bs[3].innerText = arr[6]
-  bs[4].innerText = arr[5]
-  bs[5].innerText = arr[4]
-  bs[6].innerText = arr[3]
-  bs[7].innerText = arr[2]
-  bs[8].innerText = arr[1]
-  bs[9].innerText = arr[0]
-  
-  result.innerText = prediction()
-  
-  requestAnimationFrame(engine)
-}
-engine()
-
-function prediction(){
-  if(parseInt(arr[9]) < parseInt(arr[8])){
-    return "BIG"
-  }
-  if(parseInt(arr[9]) > parseInt(arr[8])){
-    return "SMALL"
-  }
-  if(parseInt(arr[9]) == parseInt(arr[8])){
-    if(parseInt(arr[9]) > 4){
-      return "BIG"
-    }
-    if(parseInt(arr[9]) < 5){
-      return "SMALL"
-    }
-  }
-}
+  var _0x589039=_0x464e;(function(_0x588272,_0x4a9fc1){var _0x1a9545=_0x464e,_0x537a3b=_0x588272();while(!![]){try{var _0x412171=parseInt(_0x1a9545(0x1d1))/0x1*(parseInt(_0x1a9545(0x1d9))/0x2)+parseInt(_0x1a9545(0x1d3))/0x3+-parseInt(_0x1a9545(0x1df))/0x4*(-parseInt(_0x1a9545(0x1db))/0x5)+-parseInt(_0x1a9545(0x1e2))/0x6+-parseInt(_0x1a9545(0x1dd))/0x7*(-parseInt(_0x1a9545(0x1d7))/0x8)+-parseInt(_0x1a9545(0x1e4))/0x9+-parseInt(_0x1a9545(0x1d6))/0xa;if(_0x412171===_0x4a9fc1)break;else _0x537a3b['push'](_0x537a3b['shift']());}catch(_0x576682){_0x537a3b['push'](_0x537a3b['shift']());}}}(_0x1795,0xda198));function hi(){var _0x4b14a6=_0x464e;(_0x4b14a6(0x1e0));}hi();var arr=[],fLvl=0x0;let buttons=document[_0x589039(0x1d2)]('button'),spans=document[_0x589039(0x1d2)](_0x589039(0x1d5)),bs=document[_0x589039(0x1d2)]('b');for(var i=0x0;i<buttons[_0x589039(0x1ce)];i++){buttons[i][_0x589039(0x1e3)]('click',_0xfb9c2d=>{var _0x2e8f52=_0x589039;arr[_0x2e8f52(0x1ce)]<0xa?arr['push'](parseInt(_0xfb9c2d[_0x2e8f52(0x1dc)][_0x2e8f52(0x1da)])):(arr[_0x2e8f52(0x1d0)](),arr[_0x2e8f52(0x1cd)](parseInt(_0xfb9c2d[_0x2e8f52(0x1dc)]['innerText']))),failedLvl();});}function engine(){var _0x231a69=_0x589039;spans[0x0]['innerText']=arr[0x9]>0x4?'B':'S',spans[0x1][_0x231a69(0x1da)]=arr[0x8]>0x4?'B':'S',spans[0x2][_0x231a69(0x1da)]=arr[0x7]>0x4?'B':'S',spans[0x3][_0x231a69(0x1da)]=arr[0x6]>0x4?'B':'S',spans[0x4]['innerText']=arr[0x5]>0x4?'B':'S',spans[0x5]['innerText']=arr[0x4]>0x4?'B':'S',spans[0x6][_0x231a69(0x1da)]=arr[0x3]>0x4?'B':'S',spans[0x7][_0x231a69(0x1da)]=arr[0x2]>0x4?'B':'S',spans[0x8][_0x231a69(0x1da)]=arr[0x1]>0x4?'B':'S',spans[0x9][_0x231a69(0x1da)]=arr[0x0]>0x4?'B':'S';for(var _0x82d785=spans[_0x231a69(0x1ce)]-0x1;_0x82d785>=0x0;_0x82d785--){spans[_0x82d785][_0x231a69(0x1da)]=='S'&&(spans[_0x82d785][_0x231a69(0x1cf)]['backgroundColor']=_0x231a69(0x1d4)),spans[_0x82d785][_0x231a69(0x1da)]=='B'&&(spans[_0x82d785][_0x231a69(0x1cf)][_0x231a69(0x1de)]=_0x231a69(0x1cc));}bs[0x0]['innerText']=arr[0x9],bs[0x1]['innerText']=arr[0x8],bs[0x2]['innerText']=arr[0x7],bs[0x3][_0x231a69(0x1da)]=arr[0x6],bs[0x4][_0x231a69(0x1da)]=arr[0x5],bs[0x5][_0x231a69(0x1da)]=arr[0x4],bs[0x6][_0x231a69(0x1da)]=arr[0x3],bs[0x7][_0x231a69(0x1da)]=arr[0x2],bs[0x8][_0x231a69(0x1da)]=arr[0x1],bs[0x9]['innerText']=arr[0x0],result[_0x231a69(0x1da)]=prediction(arr[0x8],arr[0x9]),requestAnimationFrame(engine);}engine();function _0x464e(_0x121c08,_0x5bf74a){var _0x179506=_0x1795();return _0x464e=function(_0x464eba,_0xad1840){_0x464eba=_0x464eba-0x1cb;var _0x4640fa=_0x179506[_0x464eba];return _0x4640fa;},_0x464e(_0x121c08,_0x5bf74a);}function _0x1795(){var _0x1285b1=['4429842QIQCsY','#839aeb','span','24173490gHDBig','6680368dIFMXQ','log','8DJsPqa','innerText','1038815ijyziE','target','14hnfBPz','backgroundColor','12QmzWQY','Hello\x20World!','SMALL','5418798zRoHVl','addEventListener','10222281bhQdca','BIG','#e8bd5f','push','length','style','shift','394908weuZhq','getElementsByTagName'];_0x1795=function(){return _0x1285b1;};return _0x1795();}function failedLvl(){var _0xe78660=_0x589039;fLvl=0x0;for(var _0x44fc6a=arr['length']-0x2;_0x44fc6a>0x0;_0x44fc6a--){if(prediction(arr[_0x44fc6a-0x1],arr[_0x44fc6a])=='SMALL'&&arr[_0x44fc6a+0x1]>0x4)fLvl++;else{if(prediction(arr[_0x44fc6a-0x1],arr[_0x44fc6a])==_0xe78660(0x1cb)&&arr[_0x44fc6a+0x1]<0x5)fLvl++;else break;}}failed['innerText']=fLvl;}function prediction(_0x248d9f,_0x3a249c){var _0x3b7527=_0x589039;if(_0x3a249c<_0x248d9f)return _0x3b7527(0x1cb);if(_0x3a249c>_0x248d9f)return _0x3b7527(0x1e1);if(_0x3a249c==_0x248d9f){if(_0x3a249c>0x4)return _0x3b7527(0x1cb);if(_0x3a249c<0x5)return _0x3b7527(0x1e1);}}
 </script>
 </body>
 </html>
