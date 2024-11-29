@@ -1,56 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kamal's Prediction Bot v2.0</title>
   <style>
-    *{
+    /*basic declaration */
+*{
   margin: 0;
   padding: 0;
+  user-select: none;
   box-sizing: border-box;
-  outline: 1px dashed grey;
+  outline: 1px dashed gray;
+  overflow: hidden;
+  font-family: Roboto;
 }
 body{
-  
+  height: 100vh;
+  width: 100vw;
+}
+#container{
+  height: 100%;
+  width: 100%;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  justify-content: space-between;
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-button{
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  font-weight: 900;
-  font-size: 2em;
-  
-  border-radius: 50px;
-  background: linear-gradient(145deg, #f0f0f0,#cacaca);
-  box-shadow: 20px 20px 60px #bebebe,
-  -20px -20px 60px #ffffff;
-  
-}
-button:active{
-  border-radius: 50px;
-  background: linear-gradient(145deg, #cacaca, #f0f0f0);
-  box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-}
-
-i{
-  font-weight: 900;
-  font-size: 3em;
-  color: red;
-}
-u{
-  font-variant: small-caps;
-}
-
 h1{
-  font-size: 4em;
-  font-weight: 900;
-  color: lime;
+  font-size: .9em;
+  font-family: cursive;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  color: white;
+  height: 100px;
+  display: block;
+  bottom: 0px;
 }
+#result{
+  font-size: 5em;
+  font-variant: normal;
+  font-family: Roboto;
+  font-weight: 900;
+  text-shadow: 0 0 20px white;
+  display: none;
+}
+/*moniter*/
 #moniter{
   width: 383px;
   height: 400px;
@@ -59,89 +61,211 @@ h1{
   align-items: center;
   justify-content: space-evenly;
 }
-#moniter > div > span{
+#moniter > div > strong{
   width: 30px;
   height: 30px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   border-radius: 50%;
   display: grid;
   place-items: center;
   margin: 4px;
   color: white;
-}
-#box{
-  padding: 5px;
   
 }
-#box > button{
-  margin: 5px;
-}
 #moniter > div > b{
-  width: 30px;
-  height: 30px;
-  font-size: 1.5em;
+  width: 20px;
+  height: 20px;
+  font-size: 1em;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  margin: 4px;
+  margin: 15px 5px;
+  font-weight: 900;
+  color: white;
+}
+
+/*controller*/
+#controller{
+  padding: 8px;;
+}
+button{
+  margin: 3px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 2.2em;
+  color: lightcyan;
+  background-color: darkcyan;
   
 }
+i{
+  font-weight: 900;
+  font-size: 4em;
+  color: red;
+}
+u{
+  font-variant: small-caps;
+  color: white;
+}
+#wins{
+  color: springgreen;
+}
+#img{
+  position:relative;
+  height: 90px;
+  display: inline;
+}
   </style>
-  <title>Predictor Bot</title>
 </head>
 <body>
   
-<h1 id="result">big</h1>
-
-<div id="moniter">
-  <aside>
+  <div id="container" >
+    
+    <h1>Next Prediction Is <span id="result"></span><image id="img" src="loader.gif"></image></h1>
+    <div id="moniter">
+  <div>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+    <b></b>
+  </div>
+  <div>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+    <strong></strong>
+  </div>
+      <aside>
   <u>Failed Levels - <i id="failed"></i></u>
-  
-  </aside>
-  
-  <div>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  </div>
-  <div>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
-    <b></b>
+  </br>
+  <u>Win Strikes - &nbsp;&nbsp;&nbsp;<i id="wins"></i></u>
+      </aside>
+    </div>
+    
+    <div id="controller">
+      <button value="0">0</button>
+      <button value="1">1</button>
+      <button value="2">2</button>
+      <button value="3">3</button>
+      <button value="4">4</button><br />
+      <button value="5">5</button>
+      <button value="6">6</button>
+      <button value="7">7</button>
+      <button value="8">8</button>
+      <button value="9">9</button>
+    </div>
   </div>
   
-</div>
-
-<div id="box">
-  <button>0</button>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button><br />
-  <button>5</button>
-  <button>6</button>
-  <button>7</button>
-  <button>8</button>
-  <button>9</button>
-</div>
+  <script>
+    var arr = new Array(10);
+var flvl = 0;
+var winst = 0;
+var strongs = document.getElementsByTagName('strong');
+var bs = document.getElementsByTagName('b');
+var btns = document.getElementsByTagName('button');
+var res = document.getElementById("result")
+var fail = document.getElementById('failed')
+var win = document.getElementById('wins')
+var pre ;
+var img = document.getElementById('img')
 
 
-<script>
-  var _0x589039=_0x464e;(function(_0x588272,_0x4a9fc1){var _0x1a9545=_0x464e,_0x537a3b=_0x588272();while(!![]){try{var _0x412171=parseInt(_0x1a9545(0x1d1))/0x1*(parseInt(_0x1a9545(0x1d9))/0x2)+parseInt(_0x1a9545(0x1d3))/0x3+-parseInt(_0x1a9545(0x1df))/0x4*(-parseInt(_0x1a9545(0x1db))/0x5)+-parseInt(_0x1a9545(0x1e2))/0x6+-parseInt(_0x1a9545(0x1dd))/0x7*(-parseInt(_0x1a9545(0x1d7))/0x8)+-parseInt(_0x1a9545(0x1e4))/0x9+-parseInt(_0x1a9545(0x1d6))/0xa;if(_0x412171===_0x4a9fc1)break;else _0x537a3b['push'](_0x537a3b['shift']());}catch(_0x576682){_0x537a3b['push'](_0x537a3b['shift']());}}}(_0x1795,0xda198));function hi(){var _0x4b14a6=_0x464e;(_0x4b14a6(0x1e0));}hi();var arr=[],fLvl=0x0;let buttons=document[_0x589039(0x1d2)]('button'),spans=document[_0x589039(0x1d2)](_0x589039(0x1d5)),bs=document[_0x589039(0x1d2)]('b');for(var i=0x0;i<buttons[_0x589039(0x1ce)];i++){buttons[i][_0x589039(0x1e3)]('click',_0xfb9c2d=>{var _0x2e8f52=_0x589039;arr[_0x2e8f52(0x1ce)]<0xa?arr['push'](parseInt(_0xfb9c2d[_0x2e8f52(0x1dc)][_0x2e8f52(0x1da)])):(arr[_0x2e8f52(0x1d0)](),arr[_0x2e8f52(0x1cd)](parseInt(_0xfb9c2d[_0x2e8f52(0x1dc)]['innerText']))),failedLvl();});}function engine(){var _0x231a69=_0x589039;spans[0x0]['innerText']=arr[0x9]>0x4?'B':'S',spans[0x1][_0x231a69(0x1da)]=arr[0x8]>0x4?'B':'S',spans[0x2][_0x231a69(0x1da)]=arr[0x7]>0x4?'B':'S',spans[0x3][_0x231a69(0x1da)]=arr[0x6]>0x4?'B':'S',spans[0x4]['innerText']=arr[0x5]>0x4?'B':'S',spans[0x5]['innerText']=arr[0x4]>0x4?'B':'S',spans[0x6][_0x231a69(0x1da)]=arr[0x3]>0x4?'B':'S',spans[0x7][_0x231a69(0x1da)]=arr[0x2]>0x4?'B':'S',spans[0x8][_0x231a69(0x1da)]=arr[0x1]>0x4?'B':'S',spans[0x9][_0x231a69(0x1da)]=arr[0x0]>0x4?'B':'S';for(var _0x82d785=spans[_0x231a69(0x1ce)]-0x1;_0x82d785>=0x0;_0x82d785--){spans[_0x82d785][_0x231a69(0x1da)]=='S'&&(spans[_0x82d785][_0x231a69(0x1cf)]['backgroundColor']=_0x231a69(0x1d4)),spans[_0x82d785][_0x231a69(0x1da)]=='B'&&(spans[_0x82d785][_0x231a69(0x1cf)][_0x231a69(0x1de)]=_0x231a69(0x1cc));}bs[0x0]['innerText']=arr[0x9],bs[0x1]['innerText']=arr[0x8],bs[0x2]['innerText']=arr[0x7],bs[0x3][_0x231a69(0x1da)]=arr[0x6],bs[0x4][_0x231a69(0x1da)]=arr[0x5],bs[0x5][_0x231a69(0x1da)]=arr[0x4],bs[0x6][_0x231a69(0x1da)]=arr[0x3],bs[0x7][_0x231a69(0x1da)]=arr[0x2],bs[0x8][_0x231a69(0x1da)]=arr[0x1],bs[0x9]['innerText']=arr[0x0],result[_0x231a69(0x1da)]=prediction(arr[0x8],arr[0x9]),requestAnimationFrame(engine);}engine();function _0x464e(_0x121c08,_0x5bf74a){var _0x179506=_0x1795();return _0x464e=function(_0x464eba,_0xad1840){_0x464eba=_0x464eba-0x1cb;var _0x4640fa=_0x179506[_0x464eba];return _0x4640fa;},_0x464e(_0x121c08,_0x5bf74a);}function _0x1795(){var _0x1285b1=['4429842QIQCsY','#839aeb','span','24173490gHDBig','6680368dIFMXQ','log','8DJsPqa','innerText','1038815ijyziE','target','14hnfBPz','backgroundColor','12QmzWQY','Hello\x20World!','SMALL','5418798zRoHVl','addEventListener','10222281bhQdca','BIG','#e8bd5f','push','length','style','shift','394908weuZhq','getElementsByTagName'];_0x1795=function(){return _0x1285b1;};return _0x1795();}function failedLvl(){var _0xe78660=_0x589039;fLvl=0x0;for(var _0x44fc6a=arr['length']-0x2;_0x44fc6a>0x0;_0x44fc6a--){if(prediction(arr[_0x44fc6a-0x1],arr[_0x44fc6a])=='SMALL'&&arr[_0x44fc6a+0x1]>0x4)fLvl++;else{if(prediction(arr[_0x44fc6a-0x1],arr[_0x44fc6a])==_0xe78660(0x1cb)&&arr[_0x44fc6a+0x1]<0x5)fLvl++;else break;}}failed['innerText']=fLvl;}function prediction(_0x248d9f,_0x3a249c){var _0x3b7527=_0x589039;if(_0x3a249c<_0x248d9f)return _0x3b7527(0x1cb);if(_0x3a249c>_0x248d9f)return _0x3b7527(0x1e1);if(_0x3a249c==_0x248d9f){if(_0x3a249c>0x4)return _0x3b7527(0x1cb);if(_0x3a249c<0x5)return _0x3b7527(0x1e1);}}
-</script>
+
+for(var i=0;i<10;i++){
+btns[i].addEventListener('click',function(e){
+  arr.pop()
+  arr.unshift(e.target.value)
+  pre = res.innerText
+  info(pre,e)
+  
+  res.style.display='none'
+  img.style.display='inline'
+  setTimeout(()=>{
+    img.style.display='none'
+    res.style.display='inline'
+  },flvl>2?flvl*1000:2000)
+  
+})}
+
+function info(pre,e) {
+  if(pre=="Small" && e.target.value<5){
+    flvl = 0
+    winst++
+  }
+  else if(pre=="BIG" && e.target.value>4){
+    flvl = 0
+    winst++
+  }
+  else{
+    winst = 0
+    flvl++
+  }
+    
+  
+}
+/* Main Prediction */
+function predict(arr){
+  
+  if(arr[1]>4){
+    return "BIG"
+  }
+  else if(arr[1]<5){
+    return "Small"
+  }
+  else{
+    return "-"
+  }
+}
+alert("----------------------------------------\nUse your Mind after 3 level Failed\n\n---Credits---\n1. Kamal \n2. Sachendra \n3. Kanhaiya ")
+
+function engine() {
+  
+  for(var i=0;i<arr.length;i++){
+    if(typeof arr[i] != "undefined"){
+    strongs[i].innerText=arr[i]
+    }else{
+      strongs[i].innerText="-"
+    }
+  }
+  
+  for(var i=0;i<arr.length;i++){
+    if(arr[i]>4){
+      bs[i].innerText="B"
+    } else if(arr[i]<5){
+      bs[i].innerText="S"
+    }else{
+      bs[i].innerText="-"
+    }
+  }
+  
+  for(var i=0;i<10;i++){
+  if(bs[i].innerText=="B"){
+    bs[i].style="background-color:orange;"
+  }else{
+    bs[i].style="background-color:#7882FF;"
+  }
+  }
+  res.innerText = predict(arr)
+  fail.innerText = flvl
+  win.innerText = winst
+  
+  
+  requestAnimationFrame(engine)
+}
+engine()
+  </script>
 </body>
 </html>
